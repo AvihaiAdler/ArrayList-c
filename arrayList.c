@@ -1,4 +1,3 @@
-#pragma warning (disable : 5045)
 #include "arrayList.h"
 
 arrayList* newArrayList(void)
@@ -41,7 +40,7 @@ bool allocate(arrayList* self, int capacity)
 
 bool add(void* self, int element)
 {
-	arrayList* list = (arrayList*)self;
+	arrayList* list = self;
 	bool alloc = false;
 	bool allocted = false;
 
@@ -68,7 +67,7 @@ bool add(void* self, int element)
 
 bool addAll(void* self, const int elements[], size_t size)
 {
-	arrayList* list = (arrayList*)self;
+	arrayList* list = self;
 
 	for (size_t i = 0; i < size; i++)
 	{
@@ -82,7 +81,7 @@ bool addAll(void* self, const int elements[], size_t size)
 
 void clear(void* self)
 {
-	arrayList* list = (arrayList*)self;
+	arrayList* list = self;
 	list->size = 0;
 	free(list->list);
 	list->list = NULL;
@@ -90,7 +89,7 @@ void clear(void* self)
 
 arrayList* clone(const void* self)
 {
-	const arrayList* list = (const arrayList*)self;
+	const arrayList* list = self;
 	arrayList* tmp = newArrayList();
 	
 	for (size_t i = 0; i < list->size; i++)
@@ -108,7 +107,7 @@ bool contains(const void* self, int element)
 
 int indexOf(const void* self, int element)
 {
-	const arrayList* list = (const arrayList*)self;
+	const arrayList* list = self;
 	for (size_t i = 0; i < list->size; i++)
 	{
 		if (list->list[i] == element)
@@ -119,7 +118,7 @@ int indexOf(const void* self, int element)
 
 int get(const void* self, int index, bool* valid)
 {
-	const arrayList* list = (const arrayList*)self;
+	const arrayList* list = self;
 	if (index >= (int)list->size || index < 0)
 	{
 		*valid = false;
@@ -140,7 +139,7 @@ bool isEmpty(const void* self)
 
 bool removeElement(void* self, int element)
 {
-	arrayList* list = (arrayList*)self;
+	arrayList* list = self;
 
 	int index = indexOf(self, element);
 	if (index < 0)
@@ -186,13 +185,13 @@ int compare(const void* a, const void* b)
 
 void sort(void* self)
 {
-	arrayList* list = (arrayList*)self;
+	arrayList* list = self;
 	qsort(list->list, list->size, sizeof * list->list, compare);
 }
 
 int* toArray(const void* self)
 {
-	const arrayList* list = (const arrayList*)self;
+	const arrayList* list = self;
 	if (!list->size)
 		return NULL;
 

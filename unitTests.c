@@ -1,10 +1,9 @@
-#pragma warning (disable : 5045)
 #include "unitTests.h"
 #include <assert.h>
 
 void assertInnerLIst(const void* self, int* arr, size_t arrSize)
 {
-	const arrayList* list = (const arrayList*)self;
+	const arrayList* list = self;
 	assert(arrSize == list->size);
 	
 	for (size_t i = 0; i < list->size; i++)
@@ -13,8 +12,8 @@ void assertInnerLIst(const void* self, int* arr, size_t arrSize)
 
 void assertList(const void* self, const void* other)
 {
-	const arrayList* list = (const arrayList*)self;
-	const arrayList* another = (const arrayList*)other;
+	const arrayList* list = self;
+	const arrayList* another = other;
 
 	assert(list->capacity == another->capacity);
 	assert(list->size == another->size);
